@@ -1,6 +1,7 @@
 /*
   Flutter Application for managing type 1 diabetes nutrition
 */
+import 'package:carb_o_manager/food_data.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'meal_page.dart';
@@ -15,6 +16,8 @@ void main() {
 
 class MyAppModel with ChangeNotifier {
   int selectedIndex = 0;
+  int selectedDailyLogIndex = 0;
+  late DailyMeal selectedDailyLog = dailyLogs[selectedDailyLogIndex];
   final List<Widget> pages = const [MealPage(), IngredientPage(), HealthPage()];
   late Widget currentPage = pages[selectedIndex];
   void selectTab(int index) {
@@ -23,7 +26,26 @@ class MyAppModel with ChangeNotifier {
     notifyListeners();
   }
 
+  List<DailyMeal> dailyLogs = [
+    DailyMeal(title: 'Bad day', date: DateTime.now()),
+    DailyMeal(title: 'Good day', date: DateTime.now())
+  ];
+
   void openAccount() {}
+  void addMeal() {}
+  void selectNextMeal() {
+    selectedDailyLogIndex++;
+    selectedDailyLog = dailyLogs[selectedDailyLogIndex];
+    notifyListeners();
+  }
+
+  void selectPreviousMeal() {
+    selectedDailyLogIndex--;
+    selectedDailyLog = dailyLogs[selectedDailyLogIndex];
+    notifyListeners();
+  }
+
+  void selectDate(DateTime? date) {}
 }
 
 class MyApp extends StatelessWidget {
