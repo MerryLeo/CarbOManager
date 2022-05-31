@@ -22,6 +22,8 @@ class MyAppModel with ChangeNotifier {
     currentPage = pages[index];
     notifyListeners();
   }
+
+  void openAccount() {}
 }
 
 class MyApp extends StatelessWidget {
@@ -40,6 +42,7 @@ class MyApp extends StatelessWidget {
         tooltip: 'Enter insulin data here')
   ];
   static const String applicationTitle = 'CarbOManager';
+  static const Icon accountIcon = Icon(Icons.account_circle);
   static final ThemeData themeData = ThemeData(primarySwatch: Colors.blue);
 
   const MyApp({Key? key}) : super(key: key);
